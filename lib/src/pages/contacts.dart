@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-import './info.dart';
+import './infoBasic.dart';
+
+class ScreenArguments {
+  final String title;
+  final String message;
+
+  ScreenArguments(this.title, this.message);
+}
 
 class ContactPage extends StatelessWidget {
   // lista de elementos
@@ -40,8 +47,13 @@ class ContactPage extends StatelessWidget {
             child: Text(item.substring(0, 1).toUpperCase()),
           ),
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => InfoPage()));
+            //Navigator.push(context,MaterialPageRoute(builder: (context) => InfoPage(name: item)));
+            //Navigator.pushNamed(context, '/infoBasic', arguments: InfoBasicPage(name: item));
+            Navigator.pushNamed(
+              context,
+              '/info',
+              arguments: ScreenArguments('Contact', item),
+            );
           },
         );
       }).toList();
