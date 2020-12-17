@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
-class InfoPageAdvanced extends StatelessWidget {
+class InfoPageAdvanced extends StatefulWidget {
   final data;
-
-  // lista de elementos
-  final _contacts = ["Miguel", "Marlon", "Edwin", "Diego"];
 
   InfoPageAdvanced({
     Key key,
     @required this.data,
   }) : super(key: key);
+
+  @override
+  _InfoPageAdvancedState createState() => _InfoPageAdvancedState();
+}
+
+class _InfoPageAdvancedState extends State<InfoPageAdvanced> {
+  List<bool> _estado = new List<bool>();
+
+  final _contacts = ["Miguel", "Marlon", "Edwin", "Diego"];
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +36,46 @@ class InfoPageAdvanced extends StatelessWidget {
       return lst;
     }
 
+    Widget _cargarSwith() {
+      List<Widget> lst = new List<Widget>();
+
+      for (int i = 0; i < 20; i++) {
+        this._estado.add(true);
+
+        final lisTile = SwitchListTile(
+            title: Text("Listado"),
+            //value: _estado,
+            value: _estado[i],
+            onChanged: (valor) {
+              setState(() {
+                _estado[i] = valor;
+              });
+            });
+
+        lst.add(lisTile);
+      }
+
+      return Container(
+        child: ListView(children: lst),
+      );
+    }
+
+/*     Widget _cargarSwith_v2() {
+      return Container(
+          child: ListView(
+              children: List.generate(
+                  20,
+                  (i) => SwitchListTile(
+                      title: Text("Listado"),
+                      //value: _estado,
+                      value: _estado,
+                      onChanged: (valor) {
+                        setState(() {
+                          _estado = valor;
+                        });
+                      }))));
+    }
+ */
     Widget _seccionListView() {
       return Container(
         child: ListView(children: _cargarLista()),
@@ -73,7 +119,7 @@ class InfoPageAdvanced extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    data.message,
+                    widget.data.message,
                     style: TextStyle(
                         color: Colors.black.withOpacity(0.6), fontSize: 20.0),
                   ),
@@ -117,15 +163,20 @@ class InfoPageAdvanced extends StatelessWidget {
                 SizedBox(
                   height: 10.5,
                 ),
-                Expanded(child: _seccionListView()),
+                Expanded(child: _cargarSwith()),
                 SizedBox(
                   height: 10.5,
                 ),
                 _bottonFloat(),
-                SwitchListTile(
-                    title: Text("Listado"), value: true, onChanged: null)
+/*                 SwitchListTile(
+                    title: Text("Listado"),
+                    value: _estado,
+                    onChanged: (valor) {
+                      setState(() {
+                        _estado = valor;
+                      });
+                    }) */
               ],
             )));
-  } // widget
-
+  }
 } // clase

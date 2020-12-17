@@ -1,0 +1,19 @@
+{
+    "contactos" : [
+        {
+            "Nombres" : "Miguel Angel",
+            "icono" : "add_alert",
+            "url": ""
+        },
+        {
+            "Nombres" : "Maria los Angeles Reyes",
+            "icono" : "add",
+            "url": ""
+        },
+        {
+            "Nombres" : "Emiliano Ospina",
+            "icono" : "reload",
+            "url": ""
+        }
+    ]
+}
