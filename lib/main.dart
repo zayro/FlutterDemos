@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import './src/pages/contacts.dart';
+//import './src/pages/contacts.dart';
 
 import './src/pages/infoBasic.dart';
+import './src/pages/home.dart';
 
 import './src/route.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       //initialRoute: '/',
       routes: {'/infoBasic': (context) => InfoBasicPage(name: "as")},
       onGenerateRoute: RouteGenerator.generateRoute,
-      home: ContactPage(),
+      home: MyHomePage(),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './infoBasic.dart';
+//import './infoBasic.dart';
 
 class ScreenArguments {
   final String title;
