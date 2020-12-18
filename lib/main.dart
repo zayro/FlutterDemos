@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 //import './src/pages/contacts.dart';
 
-import './src/pages/infoBasic.dart';
+import 'src/pages/ListaNavegacion/infoBasic.dart';
 import './src/pages/home.dart';
 
 import './src/route.dart';

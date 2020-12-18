@@ -13,7 +13,7 @@ class ContactPageAdvanced extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _cargarLista3() {
+    List<Widget> _cargarLista() {
       return _contacts.map((item) {
         return ListTile(
           title: Text(item),
@@ -40,7 +40,7 @@ class ContactPageAdvanced extends StatelessWidget {
           appBar: AppBar(
             title: Text('Material App Bar'),
           ),
-          body: ListView(children: _cargarLista3())),
+          body: ListView(children: _cargarLista())),
     );
   }
 }

@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 /**
  * Agregar Rutas
  */
-import './pages/info.dart';
-import './pages/infoAdvanc.dart';
+import 'pages/Listabasica/info.dart';
+import 'pages/ListaAvanzada/infoAdvanc.dart';
+import 'pages/ListaDatos/ListaDatos.dart';
+
+import 'pages/Listabasica/contacts.dart';
+import 'pages/ListaAvanzada/contactsAdvanc.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -22,6 +26,18 @@ class RouteGenerator {
           builder: (_) => InfoPageAdvanced(
             data: args,
           ),
+        );
+      case '/listaDatos':
+        return MaterialPageRoute(
+          builder: (_) => ListaDatos(),
+        );
+      case '/listaContactosAvanzado':
+        return MaterialPageRoute(
+          builder: (_) => ContactPageAdvanced(),
+        );
+      case '/listaContactos':
+        return MaterialPageRoute(
+          builder: (_) => ContactPage(),
         );
       default:
         // If there is no such named route in the switch statement, e.g. /third
