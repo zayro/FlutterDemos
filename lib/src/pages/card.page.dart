@@ -1,21 +1,50 @@
 import 'package:flutter/material.dart';
 
+import '../alert/alert.dart';
+
 class CardPage extends StatelessWidget {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  //SnackBar
+  void mostrarSnackbar(String mensaje) {
+    final snackbar = SnackBar(
+      content: Text(mensaje),
+      duration: Duration(milliseconds: 3000),
+    );
+
+    scaffoldKey.currentState.showSnackBar(snackbar);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        buttonColor: Colors.blue,
-      ),
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Material App Card'),
-          ),
-          body: ListView(
-            children: [cardLocal(), cardHttp()],
-          )),
+    //Alert
+    final AlertDialog dialog = AlertDialog(
+      title: Text('Reset settings?'),
+      content:
+          Text('This will reset your device to its default factory settings.'),
+      actions: [
+        FlatButton(
+          textColor: Color(0xFF6200EE),
+          onPressed: () => Navigator.pop(context),
+          child: Text('CANCEL'),
+        ),
+        FlatButton(
+          textColor: Color(0xFF6200EE),
+          onPressed: () => Navigator.pop(context),
+          child: Text('ACCEPT'),
+        ),
+      ],
     );
+
+    return Scaffold(
+        key: scaffoldKey,
+        appBar: AppBar(
+          title: Text('Snackbars'),
+          actions: [SnackbarButton()],
+        ),
+        body: ListView(
+          children: [cardLocal(context, dialog), cardHttp()],
+        ));
   }
 
   cardHttp() {
@@ -66,7 +95,7 @@ class CardPage extends StatelessWidget {
         ]));
   }
 
-  cardLocal() {
+  cardLocal(BuildContext context, dialog) {
     return Card(
         clipBehavior: Clip.antiAlias,
         child: Column(children: [
@@ -100,6 +129,7 @@ class CardPage extends StatelessWidget {
                 //ElevatedButton: const Color(0xFF6200EE),
                 onPressed: () {
                   // Perform some action
+                  mostrarSnackbar("Guardando...");
                 },
                 child: const Text('CANCEL'),
               ),
@@ -107,6 +137,8 @@ class CardPage extends StatelessWidget {
                 //textColor: const Color(0xFF6200EE),
                 onPressed: () {
                   // Perform some action
+                  showDialog<void>(
+                      context: context, builder: (context) => dialog);
                 },
                 child: const Text('SEND'),
               ),
