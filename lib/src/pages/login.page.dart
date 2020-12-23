@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../BloC/provider.dart';
+
 import '../BloC/login.bloc.dart';
+import '../service/service.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,6 +10,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _servicio = Servicio();
+
+  String _emailText = '';
+  String _passwordText = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,7 +112,13 @@ class _LoginPageState extends State<LoginPage> {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return TextField(
           keyboardType: TextInputType.emailAddress,
-          onChanged: bloc.setEmail,
+          //onChanged: bloc.setEmail,
+          onChanged: (valor) {
+            setState(() {
+              _emailText = valor;
+            });
+            bloc.setEmail;
+          },
           decoration: InputDecoration(
               errorText: snapshot.error,
               icon: Icon(Icons.alternate_email, color: Colors.red),
@@ -129,7 +142,13 @@ class _LoginPageState extends State<LoginPage> {
               hintText: 'Ingrese contrasena',
               //
               counterText: snapshot.data),
-          onChanged: bloc.chagePassword,
+          //onChanged: bloc.chagePassword,
+          onChanged: (valor) {
+            setState(() {
+              _passwordText = valor;
+            });
+            bloc.chagePassword;
+          },
         );
       },
     );
@@ -139,7 +158,9 @@ class _LoginPageState extends State<LoginPage> {
     return RaisedButton(
       color: Colors.red,
       child: Text("ingresar", style: TextStyle(color: Colors.white)),
-      onPressed: () {},
+      onPressed: () {
+        _servicio.login(_emailText, _passwordText);
+      },
     );
   }
 }
