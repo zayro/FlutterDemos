@@ -87,11 +87,61 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(
-        title: const Text('Plugin example app'),
+      home: SafeArea(
+        child: Scaffold(
+          //backgroundColor: Color(0xFF3C3),
+          backgroundColor: Colors.grey[900],
+          body: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 35.0),
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    "Login",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 48.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 50),
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.fingerprint,
+                        color: Colors.blue,
+                      ),
+                      Text(
+                        "FingerPrint Auth",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 28.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        width: 180.0,
+                        child: Text(
+                          "Auntenticar using your fingerprint instead of your password",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
       ),
-      body: ConstrainedBox(
+    );
+  }
+}
+
+/* ConstrainedBox(
           constraints: const BoxConstraints.expand(),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -112,7 +162,6 @@ class _MyAppState extends State<MyApp> {
                   onPressed:
                       _isAuthenticating ? _cancelAuthentication : _authenticate,
                 )
-              ])),
-    ));
-  }
-}
+              ])
+              
+              ) */
