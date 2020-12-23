@@ -2,8 +2,12 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import '../preferencias/usuario.dart';
+
 class Servicio {
   Future<Map<String, dynamic>> login(String email, String password) async {
+    final _preference = PreferenciasUsuario;
+
     final url = "https://biolab.ga/biolab-api/oauth/token";
 
     final data = {
@@ -22,8 +26,10 @@ class Servicio {
 
     print(resDecode);
 
-    return {'ok': false};
+    if (resDecode.containsKey('access_token')) {
+      return {'ok': true, 'token': resDecode['access_token']};
+    } else {
+      return {'ok': false, 'mensaje': resDecode['error_description']};
+    }
   }
-
-  Future captureInformation() {}
 }

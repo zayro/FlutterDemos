@@ -15,6 +15,43 @@ class _LoginPageState extends State<LoginPage> {
   String _emailText = '';
   String _passwordText = '';
 
+  void _peticion() async {
+    Map info = await _servicio.login(_emailText, _passwordText);
+
+    if (info['ok']) {
+      Navigator.pushNamed(context, 'home');
+    } else {
+      _alertaLogueo(context);
+    }
+  }
+
+  void _alertaLogueo(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Alerta'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Usuario y/o contrasena invalida'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Aceptar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
