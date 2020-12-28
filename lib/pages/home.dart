@@ -55,11 +55,8 @@ class _HomePageState extends State<HomePage> {
   _onSelectItem(int val) {
     //Navigator.pop(context);
     //Navigator.of(context).pop();
-    setState(() {
-      print("v_onSelectItem $val");
-      _selectPosition = val;
-      print("_selectPosition $_selectPosition");
-    });
+
+    setState(() => _selectPosition = val);
   }
 
   @override
