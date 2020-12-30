@@ -1,29 +1,50 @@
 import 'package:flutter/material.dart';
+import './pages/map.dart';
+import './pages/scan.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  final _contacts = ["Miguel", "Marlon", "Edwin"];
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String _scanBarcode = 'Unknown';
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Material App Bar'),
-          ),
-          body: ListView(
-              /*  children: [
-              ListTile(
-                  title: Text("Marlon", style: TextStyle(fontSize: 20.0)),
-                  subtitle: Text("+573015862"),
-                  leading: Icon(Icons.access_alarm_sharp),
-                  trailing: Icon(Icons.access_alarm_sharp)),
-                 
-            ], */
-              children: List.generate(
-                  _contacts.length, (i) => Text('$i ${_contacts[i]}')))),
-    );
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            appBar: AppBar(title: const Text('Barcode scan')),
+            body: Builder(builder: (BuildContext context) {
+              return Container(
+                  alignment: Alignment.center,
+                  child: Flex(
+                      direction: Axis.vertical,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        RaisedButton(
+                            onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MyScan()),
+                                ),
+                            child: Text("Abrir barcode scan")),
+                        RaisedButton(
+                            onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MyMap()),
+                                ),
+                            child: Text("Abrir Mapa")),
+                      ]));
+            })));
   }
 }

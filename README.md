@@ -1,4 +1,4 @@
-# listas
+# dependencias
 
 A new Flutter project.
 
