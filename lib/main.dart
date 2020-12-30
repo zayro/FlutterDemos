@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './route/route.dart';
 import './preferencias/usuario.dart';
 import './BloC/provider.dart';
+import './pages/home.dart';
 
 void main() async {
   final prefs = new PreferenciasUsario();
@@ -12,8 +13,9 @@ void main() async {
   runApp(Provider(
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/home",
+      initialRoute: "/login",
       routes: rootPath(),
+      //home: HomePage(),
     ),
   ));
 }

@@ -5,6 +5,8 @@ import './http.dart';
 import './orientation.dart';
 import './text.dart';
 
+import './placeholder.dart';
+
 class HomePage extends StatefulWidget {
   //HomePage({Key key}) : super(key: key);
 
@@ -14,6 +16,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _prefs = new PreferenciasUsario();
+
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    PlaceholderWidget(Colors.white),
+    PlaceholderWidget(Colors.deepOrange),
+    PlaceholderWidget(Colors.green)
+  ];
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   void initState() {
@@ -53,9 +68,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onSelectItem(int val) {
-    //Navigator.pop(context);
     //Navigator.of(context).pop();
+    Navigator.pop(context);
+    setState(() => _selectPosition = val);
+  }
 
+  _onSelectItemOnTap(int val) {
     setState(() => _selectPosition = val);
   }
 
@@ -81,10 +99,24 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text("Home $_selectPosition"),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _onSelectItemOnTap, // new
+        currentIndex:
+            _currentIndex, // this will be set when a new tab is tapped
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'add',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'add',
+          ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -114,7 +146,6 @@ class _HomePageState extends State<HomePage> {
               selected: (0 == _selectPosition),
               onTap: () {
                 _onSelectItem(0);
-                //Navigator.pop(context);
               },
             ),
             Divider(),
@@ -137,6 +168,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: _getDraweItemWidget(_selectPosition),
-    ));
+    );
   }
 }
