@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import './list.dart';
 import '../service/db_servicio.dart';
+import '../service/http.dart';
+import '../model/persona.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -27,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   final _formKey = GlobalKey<FormState>();
 
   final servicio = DBServicio();
+  final http = HttpFireBase();
 
   Future crearList() async {
     print("$nombre $apellido");
@@ -35,6 +38,14 @@ class _HomePageState extends State<HomePage> {
     save.add(apellido);
     print(save);
     return await servicio.add(save);
+  }
+
+  Future cargarRemoto() async {
+    final res = await servicio.findAll();
+
+    final data = json.encode(res);
+
+    await http.postRequest(data);
   }
 
   @override
@@ -124,7 +135,12 @@ class _HomePageState extends State<HomePage> {
                     container,
                     buildContainer2(context),
                     container3,
-                    ListPerson(data: registros)
+                    ListPerson(data: registros),
+                    RaisedButton(
+                        onPressed: () {
+                          cargarRemoto();
+                        },
+                        child: const Text('upload data'))
                   ],
                 ),
               ),

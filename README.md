@@ -30,3 +30,7 @@ sqlite3 demo.db
 /data/user/0/com.example.listas/databases
 
 .open /data/user/0/com.example.listas/app_flutter/demo.db
+
+
+# instalar paquetes
+-flutter packages get
