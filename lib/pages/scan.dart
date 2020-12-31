@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+
+import './mapParams.dart';
 
 class MyScan extends StatefulWidget {
   @override
@@ -30,6 +32,14 @@ class _MyScanState extends State<MyScan> {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
           "#ff6666", "Cancel", true, ScanMode.QR);
       print(barcodeScanRes);
+
+      var arr = barcodeScanRes.split(',');
+
+      var coordenadas = {"latitud": arr[0], "longitud": arr[0]};
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MapParam(coordenadas: coordenadas)));
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
