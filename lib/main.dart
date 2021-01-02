@@ -10,7 +10,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _scanBarcode = 'Unknown';
+  //String _scanBarcode = 'Unknown';
 
   @override
   void initState() {
@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
                             onPressed: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => MyMap()),
+                                      builder: (context) => MapSample()),
                                 ),
                             child: Text("Abrir Mapa")),
                       ]));

@@ -3,33 +3,39 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapParam extends StatefulWidget {
-  final coordenadas;
-
-  MapParam({
-    Key key,
-    this.coordenadas,
-  }) : super(key: key);
-
+class MyMapDefault extends StatelessWidget {
   @override
-  State<MapParam> createState() {
-    print("coordenadas");
-    print(this.coordenadas);
-    print(this.coordenadas.latitudValue);
-    print(this.coordenadas.longitud);
-    print(this.coordenadas.longitudValue);
-
-    return MapParamState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Bucaramanga'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.settings,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: MapSamplee(),
+    );
   }
 }
 
-class MapParamState extends State<MapParam> {
+class MapSamplee extends StatefulWidget {
+  @override
+  State<MapSamplee> createState() => MapSampleeState();
+}
+
+class MapSampleeState extends State<MapSamplee> {
   Completer<GoogleMapController> _controller = Completer();
 
-/*   static final CameraPosition _kGooglePlex = CameraPosition(
+  static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(7.1107807, -73.1231582),
     zoom: 14.4746,
-  ); */
+  );
 
   static final CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
@@ -43,16 +49,12 @@ class MapParamState extends State<MapParam> {
     markers.add(new Marker(
         markerId: MarkerId('geo-location'),
         infoWindow: InfoWindow(title: "casita"),
-        position: LatLng(
-            widget.coordenadas.latitudValue, widget.coordenadas.longitud)));
+        position: LatLng(7.1148641, -73.1326849)));
     return new Scaffold(
       body: GoogleMap(
         //mapType: MapType.hybrid,
         mapType: MapType.normal,
-        initialCameraPosition: CameraPosition(
-          target: LatLng(7.1107807, -73.1231582),
-          zoom: 14.4746,
-        ),
+        initialCameraPosition: _kGooglePlex,
         markers: markers,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
