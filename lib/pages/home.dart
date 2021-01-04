@@ -104,17 +104,17 @@ class _HomePageState extends State<HomePage> {
         title: Text("Home $_selectPosition"),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: _onSelectItemOnTap, // new
+        onTap: _onSelectItemOnTap,
         currentIndex:
-            _currentIndex, // this will be set when a new tab is tapped
+            _selectPosition, // this will be set when a new tab is tapped
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'add',
+            label: 'Text',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
-            label: 'add',
+            label: 'Http',
           ),
         ],
       ),
