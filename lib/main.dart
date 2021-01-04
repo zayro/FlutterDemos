@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import './providers/provider.dart';
+import './screens/firstpage.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  final _contacts = ["Miguel", "Marlon", "Edwin"];
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Material App Bar'),
-          ),
-          body: ListView(
-              /*  children: [
-              ListTile(
-                  title: Text("Marlon", style: TextStyle(fontSize: 20.0)),
-                  subtitle: Text("+573015862"),
-                  leading: Icon(Icons.access_alarm_sharp),
-                  trailing: Icon(Icons.access_alarm_sharp)),
-                 
-            ], */
-              children: List.generate(
-                  _contacts.length, (i) => Text('$i ${_contacts[i]}')))),
+    return ChangeNotifierProvider(
+      //Este widget viene de la dependencia que agregamos.
+      //Requiere de un builder, que recibe el context, y nos devuelve un MyProvider (este fue el que creamos en providers/provider)
+      create: (_) => MyProvider(),
+      //builder: (context) => MyProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Provider Example',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: FirstPage(),
+      ),
     );
   }
 }
