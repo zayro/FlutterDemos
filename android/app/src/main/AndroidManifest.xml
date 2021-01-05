@@ -9,6 +9,8 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="listas"
         android:icon="@mipmap/ic_launcher">
+      <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDYC-XxIidQkAm2gc8FPTIDFyY4gbIeMYY"/>        
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
