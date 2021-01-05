@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:listas/service/sqlite.dart';
 
+import 'package:provider/provider.dart';
+import './providers/index.dart';
+
 import './service/scan.dart';
 import './service/urlLauncher.dart';
 
@@ -17,9 +20,21 @@ class _HomePageState extends State<HomePage> {
   final db = DBServicio();
   final scan = ScanCode();
   final url = UrlLauncher();
+
   @override
   Widget build(BuildContext context) {
+    var myProvider = Provider.of<MyProvider>(context);
+    int _selectPosition = 0;
+
+    _onSelectItem(int val) {
+      print("_onSelectItemOnTap $val");
+      myProvider.pageCurrent = val;
+      myProvider.updateList = true;
+      setState(() => _selectPosition = val);
+    }
+
     return Scaffold(
+      body: myProvider.handleState(),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         child: Row(
@@ -27,13 +42,15 @@ class _HomePageState extends State<HomePage> {
             IconButton(
                 icon: Icon(Icons.http),
                 onPressed: () {
-                  Navigator.pushNamed(context, "/ListUrl");
+                  _onSelectItem(1);
+                  //Navigator.pushNamed(context, "/ListUrl");
                 }),
             Spacer(),
             IconButton(
                 icon: Icon(Icons.map),
                 onPressed: () {
-                  Navigator.pushNamed(context, "/ListMap");
+                  _onSelectItem(0);
+                  //Navigator.pushNamed(context, "/ListMap");
                 }),
           ],
         ),
@@ -50,11 +67,13 @@ class _HomePageState extends State<HomePage> {
               print(" ************ URL ************");
               await db.addHttp([data]);
               await url.open(data);
+              myProvider.updateList = true;
             }
 
             if (geo.length > 1) {
               print(" *********** GEO ***********");
               await db.infoGeo([data]);
+              myProvider.updateList = true;
               Navigator.pushNamed(context, MapParam.routeName,
                   arguments: (geo));
             }

@@ -3,6 +3,9 @@ import '../service/urlLauncher.dart';
 
 import '../service/sqlite.dart';
 
+import 'package:provider/provider.dart';
+import '../providers/index.dart';
+
 class ListUrl extends StatefulWidget {
   @override
   _ListUrlState createState() => _ListUrlState();
@@ -19,14 +22,31 @@ class _ListUrlState extends State<ListUrl> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print('init state');
-    servicio();
+    print('------------- init state LIST URL -------------');
+
+    //servicio();
+  }
+
+  @override
+  void didUpdateWidget(covariant ListUrl oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    print('------------- didUpdateWidget LIST URL -------------');
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print('------------- dispose LIST URL -------------');
   }
 
   final url = UrlLauncher();
 
   @override
   Widget build(BuildContext context) {
+    //var myProvider = Provider.of<MyProvider>(context);
+
     var futureBuilder = FutureBuilder(
         future: db.findAllHttp(),
         builder: (context, AsyncSnapshot snap) {
@@ -142,9 +162,24 @@ class _ListUrlState extends State<ListUrl> {
             );
           }
         });
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lista Url"),
+        title: Text("History Url"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              // do something
+              db.deleteAllHttp();
+              //myProvider.updateList = true;
+              setState(() {});
+            },
+          )
+        ],
       ),
       //backgroundColor: Colors.grey[900],
       body: Builder(

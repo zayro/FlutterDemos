@@ -62,12 +62,22 @@ class DBServicio {
     return await db.rawDelete('DELETE FROM infoHttp WHERE id = ?', [id]);
   }
 
+  Future deleteAllHttp() async {
+    final db = await baseDatos;
+    return await db.rawDelete('DELETE FROM infoHttp');
+  }
+
   Future deleteGeo(id) async {
     print("********************");
     print(id);
     print("********************");
     final db = await baseDatos;
     return await db.rawDelete('DELETE FROM infoGeo WHERE id = ?', [id]);
+  }
+
+  Future deleteAllGeo() async {
+    final db = await baseDatos;
+    return await db.rawDelete('DELETE FROM infoGeo');
   }
 
   void close() async {

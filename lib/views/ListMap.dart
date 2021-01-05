@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../service/sqlite.dart';
 
 import './MapParams.dart';
+import 'package:provider/provider.dart';
+import '../providers/index.dart';
 
 class ListMap extends StatefulWidget {
   @override
@@ -26,6 +28,8 @@ class _ListMapState extends State<ListMap> {
 
   @override
   Widget build(BuildContext context) {
+    var myProvider = Provider.of<MyProvider>(context);
+
     var futureBuilder = FutureBuilder(
         future: db.findAllGeo(),
         builder: (context, AsyncSnapshot snap) {
@@ -47,7 +51,7 @@ class _ListMapState extends State<ListMap> {
                   // uniquely identify widgets.
                   // key: Key(item),
                   key: UniqueKey(),
-// Show a red background as the item is swiped away.
+                  // Show a red background as the item is swiped away.
                   background: Container(
                     color: Colors.green,
                     child: Align(
@@ -145,7 +149,20 @@ class _ListMapState extends State<ListMap> {
         });
     return Scaffold(
       appBar: AppBar(
-        title: Text("ListA mAP"),
+        title: Text("History Map"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              // do something
+              db.deleteAllGeo();
+              myProvider.updateList = true;
+            },
+          )
+        ],
       ),
       //backgroundColor: Colors.grey[900],
       body: Builder(
