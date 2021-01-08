@@ -1,29 +1,21 @@
 import 'package:flutter/material.dart';
+import './routes/index.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'Main',
+    theme: ThemeData(
+      // Define the default brightness and colors.
+      brightness: Brightness.light,
+      primaryColor: Colors.yellow[700],
+      accentColor: Colors.grey[400],
 
-class MyApp extends StatelessWidget {
-  final _contacts = ["Miguel", "Marlon", "Edwin"];
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Material App Bar'),
-          ),
-          body: ListView(
-              /*  children: [
-              ListTile(
-                  title: Text("Marlon", style: TextStyle(fontSize: 20.0)),
-                  subtitle: Text("+573015862"),
-                  leading: Icon(Icons.access_alarm_sharp),
-                  trailing: Icon(Icons.access_alarm_sharp)),
-                 
-            ], */
-              children: List.generate(
-                  _contacts.length, (i) => Text('$i ${_contacts[i]}')))),
-    );
-  }
+      // Define the default font family.
+      //fontFamily: 'Georgia',
+    ),
+    initialRoute: "/home",
+    routes: rootPath(),
+    //home: HomePage(),
+  ));
 }
