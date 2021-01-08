@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'widgets/card.dart';
+import 'widgets/tabs.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -78,41 +79,11 @@ class _HomePageState extends State<HomePage> {
                   labelText: 'Search here',
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(
-                      color: Colors.red,
-                      width: 10,
-                      style: BorderStyle.none,
-                    ),
+                    borderSide: new BorderSide(color: Colors.teal),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                 ))),
-            Container(
-              margin: EdgeInsets.only(top: 20, bottom: 20),
-              color: Colors.white,
-              height: MediaQuery.of(context).size.height * 0.3,
-              width: double.infinity,
-              child: PageView(
-                physics: BouncingScrollPhysics(),
-                controller: PageController(viewportFraction: 0.5),
-                children: [
-                  CardPage(
-                      Colors.white,
-                      'https://www.besthealthmag.ca/wp-content/uploads/2019/07/junk-food-1.gif',
-                      'HAMBURGUESAS',
-                      'Promo 2X1'),
-                  CardPage(
-                      Colors.white,
-                      'https://image.freepik.com/vector-gratis/pan-hotdog_1975-208.jpg',
-                      'PERROS',
-                      'Promo 2X1'),
-                  CardPage(
-                      Colors.white,
-                      'https://www.wiltonenespanol.com/wp-content/uploads/2016/07/malteadas-300x214.jpg',
-                      'MALTEADAS',
-                      'Promo 2X1'),
-                ],
-              ),
-            ),
+            Expanded(child: ProfilePage()),
             Container(
               alignment: Alignment.topLeft,
               child: Text(

@@ -11,7 +11,7 @@ class CardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(right: 10, top: 10, bottom: 10),
+        margin: EdgeInsets.only(right: 10, top: 5, bottom: 10),
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
