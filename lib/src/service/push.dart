@@ -5,6 +5,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 class ServicioPush {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
+  final _mensajeStreamController = StreamController.broadcast();
+  Stream get mensajesStream => _mensajeStreamController.stream;
+
   static Future<dynamic> mensajePush(Map<String, dynamic> message) async {
     if (message.containsKey('data')) {
       final dynamic data = message['data'];
@@ -33,7 +36,9 @@ class ServicioPush {
     print("==========onMessage=============");
 
     final argumento = message['data'];
+    _mensajeStreamController.sink.add(argumento);
 
+    print(message);
     print(argumento);
   }
 
@@ -41,6 +46,7 @@ class ServicioPush {
     print("==========onLaunch=============");
     // al final para el stream
     final argumento = message['data'];
+    _mensajeStreamController.sink.add(argumento);
 
     print(argumento);
   }
@@ -50,7 +56,12 @@ class ServicioPush {
 
     // al final para el stream
     final argumento = message['data'];
+    _mensajeStreamController.sink.add(argumento);
 
     print(argumento);
+  }
+
+  dispose() {
+    _mensajeStreamController?.close();
   }
 }
