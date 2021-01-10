@@ -17,30 +17,33 @@ class ProfilePageState extends State<ProfilePage> {
           SizedBox(
             height: 50,
             child: AppBar(
-              backgroundColor: Colors.white10,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               elevation: 0,
               bottom: TabBar(
-                indicatorColor: Colors.yellow,
+                indicatorColor: Theme.of(context).primaryColor,
                 tabs: [
                   Tab(
                     child: Text(
                       "Combo Meal",
                       style: TextStyle(
-                          fontFamily: "BarlowBold", color: Colors.black),
+                          fontFamily: "BarlowBold",
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                   Tab(
                     child: Text(
                       "Chicken",
                       style: TextStyle(
-                          fontFamily: "BarlowBold", color: Colors.black),
+                          fontFamily: "BarlowBold",
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                   Tab(
                     child: Text(
                       "Beverages",
                       style: TextStyle(
-                          fontFamily: "BarlowBold", color: Colors.black),
+                          fontFamily: "BarlowBold",
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                 ],
@@ -53,10 +56,10 @@ class ProfilePageState extends State<ProfilePage> {
               children: [
                 // first tab bar view widget
                 Container(
-                  color: Colors.white10,
+                  //color: Colors.white10,
                   child: Container(
                     margin: EdgeInsets.only(top: 20, bottom: 20),
-                    color: Colors.white,
+                    //color: Colors.white,
                     height: MediaQuery.of(context).size.height * 0.5,
                     width: double.infinity,
                     child: PageView(

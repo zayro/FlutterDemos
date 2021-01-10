@@ -42,19 +42,19 @@ class CardPage extends StatelessWidget {
                   ),
                 )),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Center(
               child: Text(
                 this.title,
                 style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 14,
                     color: Theme.of(context).accentColor,
                     fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
-              height: 15,
+              height: 5,
             ),
             Center(
               child: Text(this.subtitle,
