@@ -28,6 +28,7 @@ dependencies:
   image_picker: ^0.6.7+4
   path_provider: ^1.6.24
   url_launcher: ^5.7.10
+  flutter_svg: ^0.19.0
   shared_preferences:
   path:
   http:
