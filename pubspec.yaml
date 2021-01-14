@@ -29,6 +29,11 @@ dependencies:
   path_provider: ^1.6.24
   url_launcher: ^5.7.10
   flutter_svg: ^0.19.0
+  scrolling_page_indicator: ^0.1.2
+  carousel_pro: ^1.0.0
+  carousel_slider: ^2.3.1
+  responsive_grid: ^1.2.1+1
+  steps: ^1.0.1
   shared_preferences:
   path:
   http:
@@ -56,6 +61,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+     - assets/images/background/
+     - assets/images/home/
      - assets/images/
      - assets/icons/
 
