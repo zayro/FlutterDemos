@@ -20,5 +20,10 @@ choco install lcov
 
 pub global activate coverage
 
-emuladores 
+##emuladores 
 -https://geekflare.com/es/android-ios-emulators/
+
+
+##Buils
+-flutter packages get
+-flutter packages pub run flutter_launcher_icons:main
