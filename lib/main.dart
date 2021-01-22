@@ -1,35 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:proyecto_test/models/favorites.dart';
+import 'package:proyecto_test/screens/favorites.dart';
+import 'package:proyecto_test/screens/home.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(TestingApp());
+}
 
-class MyApp extends StatelessWidget {
+class TestingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      theme: ThemeData(
-        // Define the default brightness and colors.
-        brightness: Brightness.light,
-        primaryColor: Colors.yellow[700],
-        accentColor: Colors.grey[400],
-
-        // Define the default font family.
-        //fontFamily: 'Georgia',
+    return ChangeNotifierProvider<Favorites>(
+      create: (context) => Favorites(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Taller pruebas',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        routes: {
+          HomePage.routeName: (context) => HomePage(),
+          FavoritesPage.routeName: (context) => FavoritesPage(),
+        },
+        initialRoute: HomePage.routeName,
       ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Material App Bar'),
-          ),
-          body: ListView(
-            children: [
-              ListTile(
-                  title: Text("Marlon", style: TextStyle(fontSize: 20.0)),
-                  subtitle: Text("+573015862"),
-                  leading: Icon(Icons.access_alarm_sharp),
-                  trailing: Icon(Icons.access_alarm_sharp)),
-            ],
-          )),
     );
   }
 }
