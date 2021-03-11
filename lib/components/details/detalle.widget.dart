@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:listas/models/Product.dart';
 
 import 'widgets/TextDetail.dart';
-import 'widgets/color.dart';
+//import 'widgets/color.dart';
 import 'widgets/cart.dart';
 
 class DetailProductPage extends StatefulWidget {

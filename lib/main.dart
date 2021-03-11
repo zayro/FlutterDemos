@@ -12,7 +12,7 @@ void main() async {
       accentColor: Colors.grey[700],
       backgroundColor: Colors.white,
       cardColor: Colors.white,
-      textSelectionColor: Colors.amber,
+      //textSelectionColor: Colors.amber,
 
       // Define the default font family.
       //fontFamily: 'Georgia',

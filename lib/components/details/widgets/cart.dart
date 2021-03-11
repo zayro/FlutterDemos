@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:listas/models/Product.dart';
+//import 'package:flutter_svg/flutter_svg.dart';
+//import 'package:listas/models/Product.dart';
 
 class AddToCart extends StatelessWidget {
   const AddToCart({

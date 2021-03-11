@@ -36,7 +36,7 @@ dev_dependencies:
   image_picker: ^0.6.7+4
   path_provider: ^1.6.24
   url_launcher: ^5.7.10
-  flutter_svg: ^0.18.0 
+  flutter_svg: ^0.19.3
   flutter_rating_bar: ^3.2.0+1
   shared_preferences:
   path:
