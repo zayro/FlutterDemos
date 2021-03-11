@@ -7,7 +7,7 @@ class CarouselPage extends StatelessWidget {
     var size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: size.height * 0.3,
+      height: size.height * 0.2,
       //width: 300.0,
       child: Carousel(
         boxFit: BoxFit.cover,

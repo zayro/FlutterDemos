@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      resizeToAvoidBottomPadding: false,
+      //resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         toolbarOpacity: 0.9,
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
             ),
             //OffersPage()
             SpecialOffers(),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             Container(
               margin: EdgeInsets.all(10),
               alignment: Alignment.topLeft,
@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                     color: Theme.of(context).accentColor),
               ),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             CarouselPage()
           ],
         ),
